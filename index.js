@@ -1,9 +1,15 @@
 const taskList = {
     // afzhan:{
-    //     res:'http://www.afzhan.com/'
+    //     res:'http://www.afzhan.com'
     // },
-    bmlink:{
-        res:'https://www.bmlink.com'
+    // bmlink:{
+    //     res:'https://www.bmlink.com'
+    // },
+    // cps:{
+    //     res:'http://www.cps.com.cn'
+    // }
+    hqps:{
+        res:'http://www.hqps.com'
     }
 }
 
@@ -11,12 +17,18 @@ const taskList = {
 
 
 const start = async ()=>{
+    let all = []
     for(let i in taskList){
         console.log(`task ${i} start`)
         let task = require(`./task/${i}`)
         let data = await task()
-        // console.log(data)
+        all = [...all,...data.map(item=>{
+            return Object.assign(item,{
+                res:taskList[i].res
+            })
+        })]
     }
+    console.log(all)
 }
 
 start()

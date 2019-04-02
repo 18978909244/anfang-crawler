@@ -16,7 +16,7 @@ a{
     height: 300px;
     margin: 0 auto;
     /* border: 2px solid red; */
-    background: #4cb034;
+    /* background: #4cb034; */
     position: relative;
 }
 .test_wrap .drawbox-front,.test_wrap .drawbox-behand{
@@ -24,19 +24,19 @@ a{
     position: absolute;
     width: 30%;
     color: #fff;
-    background:#4cb034;
+    /* background:#4cb034; */
     text-align: center;
-    -webkit-border-radius: 4px;
-    border-radius: 4px;
-    padding: 30px 0;
+    /* -webkit-border-radius: 4px; */
+    /* border-radius: 4px; */
+    /* padding: 30px 0; */
     /* -webkit-animation: proRotate s ease-in-out infinite;
     animation: proRotate 3s ease-in-out infinite; */
 }
 .test_wrap .drawbox-front{
-    animation: proRotate 5s linear infinite;
+    animation: proRotate 10s linear infinite;
 }
 .test_wrap .drawbox-behand{
-    animation: _proRotate 5s linear infinite;
+    animation: _proRotate 10s linear infinite;
 }
 /* @-webkit-keyframes proRotate { 
     0%{transform:perspective(400px) rotateY(0deg) translate(0px,0px);color:black} 
@@ -44,29 +44,37 @@ a{
     100%{transform:perspective(400px) rotateY(360deg) translate(0px,0px);color:black} 
 } */
 @keyframes proRotate { 
-    0%{transform:perspective(400px) rotateY(0deg);left:0;z-index:1} 
-    25%{transform:perspective(400px) rotateY(90deg);left:300px;z-index:1} 
-    50%{transform:perspective(400px) rotateY(180deg);left:600px;z-index:-1} 
-    75%{transform:perspective(400px) rotateY(270deg);left:300px;z-index:1}
-    100%{transform:perspective(400px) rotateY(360deg);left:0px;z-index:1} 
+    0%{transform:perspective(400px) rotateY(0deg);left:0;opacity: 1;} 
+    10%{transform:perspective(400px) rotateY(36deg);left:30px;opacity: 1;} 
+    20%{transform:perspective(400px) rotateY(72deg);left:60px;opacity: 1} 
+    30%{transform:perspective(400px) rotateY(108deg);left:90px;opacity: 0} 
+    40%{transform:perspective(400px) rotateY(144deg);left:120px;opacity: 0} 
+    50%{transform:perspective(400px) rotateY(180deg);left:150px;opacity: 0} 
+    60%{transform:perspective(400px) rotateY(216deg);left:120px;opacity: 0} 
+    70%{transform:perspective(400px) rotateY(252deg);left:90px;opacity: 0} 
+    80%{transform:perspective(400px) rotateY(288deg);left:60px;opacity: 1} 
+    90%{transform:perspective(400px) rotateY(324deg);left:30px;opacity: 1}
+    100%{transform:perspective(400px) rotateY(360deg);left:0px;opacity: 1;} 
 }
 @keyframes _proRotate { 
-    0%{transform:perspective(400px) rotateY(0deg);left:0;z-index:0} 
-    50%{transform:perspective(400px) rotateY(180deg);left:600px;z-index:0} 
-    100%{transform:perspective(400px) rotateY(360deg);left:0px;z-index:0} 
+    0%{transform:perspective(400px) rotateY(0deg);left:0;opacity: 0;} 
+    10%{transform:perspective(400px) rotateY(36deg);left:30px;opacity: 0;} 
+    20%{transform:perspective(400px) rotateY(72deg);left:60px;opacity: 0} 
+    30%{transform:perspective(400px) rotateY(108deg);left:90px;opacity: 1} 
+    40%{transform:perspective(400px) rotateY(144deg);left:120px;opacity: 1} 
+    50%{transform:perspective(400px) rotateY(180deg);left:150px;opacity: 1} 
+    60%{transform:perspective(400px) rotateY(216deg);left:120px;opacity: 1} 
+    70%{transform:perspective(400px) rotateY(252deg);left:90px;opacity: 1} 
+    80%{transform:perspective(400px) rotateY(288deg);left:60px;opacity: 0} 
+    90%{transform:perspective(400px) rotateY(324deg);left:30px;opacity: 0}
+    100%{transform:perspective(400px) rotateY(360deg);left:0px;opacity: 0} 
 }
 </style>
 </head>
 <body>
 <div class="test_wrap">
-        <div class="drawbox-front"><img src="./san.png" /></div>
-	    <div class="drawbox-behand"><img src="./_san.png" /></div>
-    <!-- <text class="name">圣地彩<br>Sanchuary</text> -->
-    <!-- <ul>
-        <li>
-            <a href="#">圣地彩<br>Sanchuary</a>
-        </li>
-    </ul> -->
+        <div class="drawbox-front"><img src="https://38yf-jvjb-dl.1733269.com/SSCMember/Images/Default/Main/san.png" /></div>
+	    <div class="drawbox-behand"><img src="https://38yf-jvjb-dl.1733269.com/SSCMember/Images/Default/Main/_san.png" /></div>\
 </div>
 <body>
 </html>

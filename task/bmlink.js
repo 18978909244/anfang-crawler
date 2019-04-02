@@ -1,12 +1,25 @@
 const axios = require('axios')
-const http = require('http')
+const request = require('request')
+const iconv = require('iconv-lite')
+const _request = url => {
+    return new Promise((resolve, reject) => {
+        var http = require('https');
+        http.get(url, function (res) {
+            var length = 0;
+            var arr = [];
+            res.on("data", function (chunk) {
+                arr.push(chunk);
+                length += chunk.length;
+            });
+            res.on("end", function () {
+                var data=Buffer.concat(arr,length);
+                var change_data = iconv.decode(data,'gb2312');
+                resolve(change_data.toString());
+            })
+        });
+    })
+}
 const cheerio = require('cheerio')
-axios.interceptors.request.use(function (request) {
-    request['headers']['common']['Accept'] = 'application/json;charset=GBK;';
-    return request;
-  }, function (error) {
-    return Promise.reject(error);
-  });
 const handlerCatHtml = html => {
     let $ = cheerio.load(html)
     let lis = $('.m-company').find('li')
@@ -20,40 +33,18 @@ const handlerCatHtml = html => {
 
 const handlerDetailHtml = html => {
     let $ = cheerio.load(html)
-    console.log(html)
-    // if(html.includes('$company.CompanyName')){
-    //     return false
-    // }
-    // if(html.includes('<article class="productShow">')){
-    //     console.log('1111')
-    //     let single={
-    //         company:$('h2').text(),
-    //         address:$('.supplier').find('dl').eq(4).find('dd').text(),
-    //         tel:$('#phone').text()
-    //     }
-    //     return single
-    // }
-
-    // let address_reg = /地址：(.*)/
-    // let tel_reg = /电话：(.*)/
-    // let address = null
-    // let tel = null
-    // try {
-    //     address = $('#nr_box').text().split('地址：')[1].split('\n')[0]
-    // } catch (e) {
-
-    // }
-    // try {
-    //     tel = $('#nr_box').text().split('电话：')[1].split('\n')[0]
-    // } catch (e) {
-
-    // }
-
-
+    let ps = $('.tabContact').find('p')
+    let tel = null
+    let address = null
+    ps.each(function(){
+        if($(this).text().includes('移动手机：')){
+            tel = $(this).text().trim().split('：')[1].split(' ')[0]
+        }
+    })
     let single = {
-        company: $('h1').html(),
-        // address,
-        // tel
+        company: $('h1').text(),
+        address,
+        tel
     }
     return single
     // let company = $('.contactUs').find('strong').text()
@@ -62,18 +53,13 @@ const handlerDetailHtml = html => {
 module.exports = async () => {
     let cat_html = await axios.get('https://www.bmlink.com/zt/573135/cj.html').then(res => res.data)
     let urls = handlerCatHtml(cat_html)
-    // console.log(urls)
-    for (let i = 0; i < urls.length; i++) {
-
-        let html = await axios.get('https:' + urls[i]).then(res => res.data)
-        // let reader = new FileReader();
-        // reader.readAsText(html, 'GBK');
-        // reader.onload = function (e) {
-        //     console.log(reader.result);
-        // }
-        // console.log(html)
+    let list = []
+    for (let i = 0; i < 10; i++) {
+        let url = urls[i].split('.')[0].split('//')[1]
+        let html = await _request(`https://m.bmlink.com/${url}/`)
+        console.log(`https://m.bmlink.com/${url}/`)
         let item = handlerDetailHtml(html)
-        console.log(item)
+        list.push(item)
     }
     return list
 }

@@ -58,7 +58,7 @@ const handlerDetailHtml = html => {
 
 module.exports = async () => {
     let list = []
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 10; i++) {
         // console.log(i)
         try {
             let html = await axios.get(`http://m.afzhan.com/st${i}/contactus.html`).then(res => res.data)
