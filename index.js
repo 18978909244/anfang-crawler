@@ -8,8 +8,11 @@ const taskList = {
     // cps:{
     //     res:'http://www.cps.com.cn'
     // }
-    hqps:{
-        res:'http://www.hqps.com'
+    // hqps:{
+    //     res:'http://www.hqps.com'
+    // }
+    xtjc:{
+        res:'http://www.xtjc.com'
     }
 }
 
