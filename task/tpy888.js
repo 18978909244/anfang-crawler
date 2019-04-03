@@ -1,22 +1,33 @@
 const axios = require('axios')
-const http = require('http')
-
-const request = (url)=>{
-    return new Promise(())
-}
+const list_url = `http://www.tpy888.cn/company/list.html`
 const cheerio = require('cheerio')
-axios.interceptors.request.use(function (request) {
-    request['headers']['common']['Accept'] = 'application/json;charset=GBK;';
-    return request;
-  }, function (error) {
-    return Promise.reject(error);
-  });
+const baidu = require('../baidu')
+const iconv = require('iconv-lite')
+
+const _request = url => {
+    return new Promise((resolve, reject) => {
+        var http = require('https');
+        http.get(url, function (res) {
+            var length = 0;
+            var arr = [];
+            res.on("data", function (chunk) {
+                arr.push(chunk);
+                length += chunk.length;
+            });
+            res.on("end", function () {
+                var data = Buffer.concat(arr, length);
+                var change_data = iconv.decode(data, 'gb2312');
+                resolve(change_data.toString());
+            })
+        });
+    })
+}
 const handlerCatHtml = html => {
     let $ = cheerio.load(html)
-    let lis = $('.m-company').find('li')
+    let lis = $('.list-box').find('li.list')
     let list = []
     lis.each(function () {
-        let href = $(this).find('a.cot-name').attr('href')
+        let href = $(this).find('a.g-f-l').attr('href')
         list.push(href)
     })
     return list
@@ -24,60 +35,45 @@ const handlerCatHtml = html => {
 
 const handlerDetailHtml = html => {
     let $ = cheerio.load(html)
-    console.log(html)
-    // if(html.includes('$company.CompanyName')){
-    //     return false
-    // }
-    // if(html.includes('<article class="productShow">')){
-    //     console.log('1111')
-    //     let single={
-    //         company:$('h2').text(),
-    //         address:$('.supplier').find('dl').eq(4).find('dd').text(),
-    //         tel:$('#phone').text()
-    //     }
-    //     return single
-    // }
-
-    // let address_reg = /地址：(.*)/
-    // let tel_reg = /电话：(.*)/
-    // let address = null
-    // let tel = null
-    // try {
-    //     address = $('#nr_box').text().split('地址：')[1].split('\n')[0]
-    // } catch (e) {
-
-    // }
-    // try {
-    //     tel = $('#nr_box').text().split('电话：')[1].split('\n')[0]
-    // } catch (e) {
-
-    // }
-
-
+    let trs = $('.lh18').find('table').find('tr')
+    let tel = null
+    let company = null
+    trs.each(function () {
+        if($(this).find('td').eq(0).text().includes('手机号码：')){
+            tel = $(this).find('td').find('img').attr('src')
+        }
+        if($(this).find('td').eq(0).text().includes('公司名称：')){
+            company = $(this).find('td').eq(1).text()
+        }
+        // if ($(this).td().includes('移动手机：')) {
+        //     tel = $(this).text().trim().split('：')[1].split(' ')[0]
+        // }
+    })
     let single = {
-        company: $('h1').html(),
-        // address,
-        // tel
+        company,
+        tel
     }
     return single
     // let company = $('.contactUs').find('strong').text()
 }
 
 module.exports = async () => {
-    let cat_html = await axios.get('https://www.bmlink.com/zt/573135/cj.html').then(res => res.data)
-    let urls = handlerCatHtml(cat_html)
-    // console.log(urls)
-    for (let i = 0; i < urls.length; i++) {
+    let list = []
+    for (let i = 1; i < 2339; i++) {
+        let list_html = await axios.get(list_url + '?page=' + i).then(res => res.data)
+        let urls = handlerCatHtml(list_html)
+        for(let j=0;j<urls.length;j++){
+            let detail_html = await axios.get(urls[j]+'contact/').then(res=>res.data)
+            let item = handlerDetailHtml(detail_html)
+            // let res = await baidu(item.tel)
+            await axios({
+                url:item.tel
+            },null,{
 
-        let html = await axios.get('https:' + urls[i]).then(res => res.data)
-        // let reader = new FileReader();
-        // reader.readAsText(html, 'GBK');
-        // reader.onload = function (e) {
-        //     console.log(reader.result);
-        // }
-        // console.log(html)
-        let item = handlerDetailHtml(html)
-        console.log(item)
+                'Content-Type':'image/png',
+                'Referer':urls[j]+'contact/'
+            }).then(console.log)
+        }
     }
     return list
 }

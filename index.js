@@ -11,8 +11,11 @@ const taskList = {
     // hqps:{
     //     res:'http://www.hqps.com'
     // }
-    xtjc:{
-        res:'http://www.xtjc.com'
+    // xtjc:{
+    //     res:'http://www.xtjc.com'
+    // }
+    tpy888:{
+        res:'http://www.tpy888.cn'
     }
 }
 
